@@ -1,0 +1,8 @@
+NEXT_DATE=`date "+%d/%m/%Y"`
+COUNT=90
+for (( c=1; c<=$COUNT; c++ ))
+do
+  NEXT_DATE=`date -j -v +1d -f "%d/%m/%Y" "$NEXT_DATE" +%d/%m/%Y` # OSX sensative
+  echo "<<<<<<"$NEXT_DATE">>>>>"
+  curl "https://reentryvisa.inis.gov.ie/website/INISOA/IOA.nsf/(getApps4DT)?openagent&dt="$NEXT_DATE"&type=I&num=1"
+done
